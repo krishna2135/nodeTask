@@ -45,4 +45,28 @@ res.status(500).send(e);
     }
 })
 
+
+router.post("/login",async(req,res)=>{
+    try{
+        const email=req.body.email;
+        const password=req.body.password;
+        console.log(email,password)
+        const getUser=await User.findOne({ email: email, password: password });
+        if(getUser){
+            res.send({
+                message:"user logedin",
+                status:1,
+                userId:getUser._id})
+        }else {
+            res.send({
+                message:"user not fond please check your emal and password",
+                status:0,
+                })
+        }
+        
+    }catch(e){
+res.status(500).send(e);
+    }
+})
+
  module.exports = router;

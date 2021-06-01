@@ -6,7 +6,7 @@ const app= express();
 var cors = require('cors')
 app.use(express.json());
 const fetch = require("node-fetch");
-app.use(router);
+app.use(cors(),router);
 app.use(cors());
 
 const  port =process.env.PORT || 8080;
