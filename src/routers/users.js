@@ -1,7 +1,7 @@
  const express = require("express");
  const router = new express.Router();
  const User = require("../modals/users");
-
+ var cors = require('cors')
  //create user
  router.post("/users",async(req,res)=>{
     try{
@@ -23,7 +23,7 @@ res.status(400).send(e);
     }
 })
 // get one user
-router.get("/users/:id",async(req,res)=>{
+router.get("/users/:id",cors(),async(req,res)=>{
     try{
         const _id=req.params.id;
       const getUser=await User.findById({_id});
